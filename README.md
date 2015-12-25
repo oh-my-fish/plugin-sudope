@@ -13,7 +13,7 @@ omf install sudope
 
 ### Usage
 
-Press `Alt`+`Esc` once to add 'sudo' (normal behaviour),
+Press `Ctrl`+`s` once to add 'sudo' (normal behaviour),
 press it twice to remove it from the beginning of the line.
 
 #### License
