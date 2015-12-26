@@ -1,4 +1,4 @@
-function sudope.bind_keys --on-event omf_bind_keys
+function sudope.init.bind_keys --on-event omf_bind_keys
   # default key sequence: Ctrl+s
   set -q sudope_sequence
     or set -l sudope_sequence \cs
