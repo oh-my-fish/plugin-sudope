@@ -8,5 +8,5 @@ function init --on-event init_sudope
       emit omf_bind_keys'"
   end
 
-  source $OMF_PATH/pkg/sudope/sudope.init.bind_keys.fish
+  source $OMF_PATH/pkg/sudope/functions/sudope.init.bind_keys.fish
 end
