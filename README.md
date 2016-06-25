@@ -2,7 +2,7 @@
 
 ### About
 
-A Fish port of om-my-zsh's [sudo plugin]
+A Fish port of oh-my-zsh's [sudo plugin]
 
 ### Install
 
