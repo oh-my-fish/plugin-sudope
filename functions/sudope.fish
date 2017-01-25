@@ -1,4 +1,4 @@
-function sudope
+function sudope -d "Quickly toggle sudo prefix"
   # If the command line is empty, pull the last command from history.
   if test -z (commandline)
     commandline -r $history[1]
