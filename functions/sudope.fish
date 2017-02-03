@@ -1,23 +1,49 @@
 function sudope -d "Quickly toggle sudo prefix"
+
+  # Save the current command line and cursor position.
+  set -l command_buffer (commandline)
+  set -l cursor_position (commandline -C)
+
   # If the command line is empty, pull the last command from history.
-  if test -z (commandline)
-    commandline -r $history[1]
+  if test -z $command_buffer
+    set command_buffer $history[1]
   end
 
-  # buffer the current command line
-  set cmdbuf (commandline)
-  # buffer cursor position
-  set curpos (commandline -C)
-  # if the line doesn't already start with "sudo "...
-  if not string match -q "sudo *" $cmdbuf
-    # add "sudo " to the beginning of the line
-    commandline -r "sudo $cmdbuf"
-    # place the cursor where it was, +5 chars (since we added 5)
-    commandline -C (math $curpos+5)
-  else # otherwise, we want to remove it
-    # remove "sudo " from the beginning of the line
-    commandline -r (string sub --start=6 $cmdbuf)
-    # place the cursor where it was, -5 chars (since we removed 5)
-    commandline -C (math $curpos-5)
+  # Parse the command line.
+  set -l command_parts (string match -ir '^(\s*)(sudo(\s+|$))?(.*)' $command_buffer)
+
+  switch (count $command_parts)
+    case 3
+      # No "sudo".
+
+      # Add "sudo" to the beginning of the command, after any leading whitespace (if present).
+      commandline -r (string join '' $command_parts[2] 'sudo ' $command_parts[3])
+
+      # Push the cursor position ahead if necessary (+5 for 'sudo ').
+      test $cursor_position -ge (string length $command_parts[2])
+        and set cursor_position (math $cursor_position+5)
+
+      # Place the cursor where it was (or where it should be).
+      commandline -C $cursor_position
+
+    case 5
+      # "sudo" is present in the beginning of the command.
+
+      # Remove "sudo", leave any leading whitespace (if present).
+      commandline -r (string join '' $command_parts[2 5])
+
+      # Push the cursor position back if appropriate ('sudo' and whitespace).
+      set -l lead_length (string length $command_parts[2])
+      set -l sudo_length (string length $command_parts[3])
+      if test $cursor_position -ge (math $lead_length+$sudo_length)
+        # The cursor was after "sudo".
+        set cursor_position (math $cursor_position-$sudo_length)
+      else if test $cursor_position -ge $lead_length
+        # The cursor was somewhere on "sudo".
+        set cursor_position $lead_length
+      end
+
+      # Place the cursor where it was (or where it should be).
+      commandline -C -- $cursor_position
   end
 end
