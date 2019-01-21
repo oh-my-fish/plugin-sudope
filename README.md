@@ -13,7 +13,7 @@ omf install sudope
 
 ### Usage
 
-Press `Ctrl`+`s` to activate it.
+Press `Alt`+`s` to activate it.
 It will add `sudo ` to the beginning of the line if missing, remove it if it is present while preserving the cursor position.
 If the current line is empty, it will do the same thing to the most recent history item.
 
