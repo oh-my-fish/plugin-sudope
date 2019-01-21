@@ -1,4 +1,4 @@
-# default key sequence: Ctrl+s
+# default key sequence: Alt+s
 set -q sudope_sequence
   or set -l sudope_sequence \es
 
