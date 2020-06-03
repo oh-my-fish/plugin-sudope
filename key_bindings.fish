@@ -3,10 +3,10 @@ set -q sudope_sequence
   or switch $FISH_VERSION
     case '2.0' '2.0.*' '2.1' '2.1.*' '2.2' '2.2.*'
       # use Ctrl+s for fish 2.2 and earlier, as Esc is not usable as a meta key.
-      set -l sudope_sequence \cs
+      set sudope_sequence \cs
     case '*'
       # use Esc+Esc for fish 2.3+
-      set -l sudope_sequence \e\e
+      set sudope_sequence \e\e
   end
 
 function __sudope_bind -a sequence # modifiers..

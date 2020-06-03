@@ -13,7 +13,7 @@ omf install sudope
 
 ### Usage
 
-Fish 2.3 and later: Press <kbd>Esc</kbd>+<kbd>Esc</kbd> to activate.
+Fish 2.3 and later: Press <kbd>Esc</kbd>+<kbd>Esc</kbd> or <kbd>Alt</kbd>+<kbd>Esc</kbd> to activate.
 (See the "Escape in Fish" appendix if you're having trouble activating sudope)
 
 Fish 2.2 and earlier: Press <kbd>Ctrl</kbd>+<kbd>s</kbd> to activate.
@@ -50,7 +50,7 @@ To `~/.config/omf/init.fish`.
 
 (from https://fishshell.com/docs/3.1/cmds/bind.html#special-case-the-escape-character)
 
-In other words, using <kbd>Esc</kbd>+<kbd>Esc</kbd> is possible with fish 2.3+, but you might need to tweak `fish_escape_delay_ms` to more than 30ms if you're having trouble activating sudope reliably.
+In other words, using <kbd>Esc</kbd>+<kbd>Esc</kbd> is possible with fish 2.3+, but you might need to tweak `fish_escape_delay_ms` to more than 30ms if you're using fish 3.1+ and having trouble activating sudope reliably.
 
 #### License
 
