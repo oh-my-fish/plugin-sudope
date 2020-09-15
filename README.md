@@ -26,12 +26,12 @@ If the current line is empty, it will do the same thing to the most recent histo
 
 The default binding sequence can be overriden by setting `sudope_sequence` to the desired sequence.
 
-The default super user command "sudo" can be overriden by setting `su_command` to the desired command.
+The default super user command "sudo" can be overriden by setting `sudope_command` to the desired command.
 
 For example, to set the sequence to <kbd>Alt</kbd>+<kbd>u</kbd> and the super user command to "doas" you can add:
 ```fish
 set -gx sudope_sequence \eu
-set -gx su_command 'doas'
+set -gx sudope_command 'doas'
 ```
 To `~/.config/omf/init.fish`.
 
