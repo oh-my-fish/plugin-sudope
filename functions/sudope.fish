@@ -36,7 +36,7 @@ function sudope -d "Quickly toggle super user command prefix"
 
       # Push the cursor position ahead if necessary
       test $cursor_position -ge (string length -- "$command_parts[2]")
-        and set cursor_position (math $cursor_position+$sudope_command_length)
+        and set cursor_position (math $cursor_position+$sudope_command_length+1)
 
       # Place the cursor where it was (or where it should be).
       commandline -C $cursor_position
