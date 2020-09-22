@@ -8,6 +8,9 @@ function sudope -d "Quickly toggle super user command prefix"
   test -n "$sudope_command"
     or set -l sudope_command 'sudo'
 
+  # Save regex escaped version of super user command for later
+  set -l sudope_command_re (string escape --style=regex "$sudope_command")
+
   # Save su command length
   set -l sudope_command_length (string length -- "$sudope_command")
 
@@ -17,7 +20,7 @@ function sudope -d "Quickly toggle super user command prefix"
   end
 
   # Parse the command line (first line only).
-  set -l command_parts (string match -ir "^(\s*)($sudope_command(\s+|\$))?(.*)" $command_buffer[1])
+  set -l command_parts (string match -ir "^(\s*)($sudope_command_re(\s+|\$))?(.*)" $command_buffer[1])
 
   # Handle multiline commands with extra care.
   set -l command_lines_count (count $command_buffer)
