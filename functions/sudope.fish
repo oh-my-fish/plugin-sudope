@@ -5,9 +5,8 @@ function sudope -d "Quickly toggle super user command prefix"
   set -l cursor_position (commandline -C)
 
   # If no custom super user command defaults to sudo
-  if test -z "$sudope_command"
-    set sudope_command 'sudo'
-  end
+  test -n "$sudope_command"
+    or set -l sudope_command 'sudo'
 
   # Save su command length
   set -l sudope_command_length (string length -- "$sudope_command")
@@ -47,7 +46,7 @@ function sudope -d "Quickly toggle super user command prefix"
 
       # Push the cursor position back if appropriate (su command and whitespace).
       set -l lead_length (string length -- "$command_parts[2]")
-      set sudope_command_length (string length -- "$command_parts[3]")
+      set -l sudope_command_length (string length -- "$command_parts[3]")
       if test $cursor_position -ge (math $lead_length+$sudope_command_length)
         # The cursor was after the su command.
         set cursor_position (math $cursor_position-$sudope_command_length)
