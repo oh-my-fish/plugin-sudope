@@ -6,7 +6,7 @@ set -q sudope_sequence
       set sudope_sequence \cs
     case '*'
       # use Esc+Esc for fish 2.3+
-      set sudope_sequence \e\e
+      set sudope_sequence "escape,escape"
   end
 
 function __sudope_bind -a sequence # modifiers..
