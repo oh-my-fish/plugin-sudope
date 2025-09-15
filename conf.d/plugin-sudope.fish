@@ -4,9 +4,12 @@ set -q sudope_sequence
     case '2.0' '2.0.*' '2.1' '2.1.*' '2.2' '2.2.*'
       # use Ctrl+s for fish 2.2 and earlier, as Esc is not usable as a meta key.
       set sudope_sequence \cs
-    case '*'
+    case '2.*' '3.*'
       # use Esc+Esc for fish 2.3+
       set sudope_sequence \e\e
+    case '*'
+      # use overhauled bind notation for fish 4.0+
+      set sudope_sequence escape,escape
   end
 
 function __sudope_bind -a sequence # modifiers..
